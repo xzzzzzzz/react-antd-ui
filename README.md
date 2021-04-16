@@ -11,7 +11,7 @@ npm install react-antd-ui
 ### 引入样式
 
 ```
-import "zswui/lib/react-antd-ui.css"
+import "react-antd-ui/lib/react-antd-ui.css"
 ```
 
 ### 打包发布
@@ -45,9 +45,9 @@ export default App;
 
 ### demo(文档待完善)
 
-[https://xzzzzzzz.github.io/react-antd-ui](https://xzzzzzzz.github.io/react-antd-ui/)
+### [https://xzzzzzzz.github.io/react-antd-ui](https://xzzzzzzz.github.io/react-antd-ui/)
 
-[ winyh ], [ zswui ] 分别为 github 的 username 和仓库名
+### [ winyh ], [ zswui ] 分别为 github 的 username 和仓库名
 
 
 
