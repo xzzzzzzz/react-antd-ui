@@ -1,17 +1,17 @@
-<h1 align="center">react-ui</h1>
+<h1 align="center">yh-web-ui</h1>
 
 <p align="center">React UI组件库</p>
 
 ### 安装
 
 ```
-npm install react-antd-ui
+npm install yh-web-ui
 ```
 
 ### 引入样式
 
 ```
-import "react-antd-ui/lib/react-antd-ui.css"
+import "yh-web-ui/lib/index.css"
 ```
 
 ### 打包发布
@@ -28,13 +28,14 @@ npm publish
 
 ```
 import React, { Component } from 'react';
-import { Button } from "react-antd-ui";
+import { Btn } from "yh-web-ui";
+import "yh-web-ui/lib/index.css";
 
 class App extends Component {
   render(){
     return (
       <div className="main">
-        <Button> Hi, Boy! </Button>
+        <Btn> Hi, Boy! </Btn>
       </div>
     );
   }

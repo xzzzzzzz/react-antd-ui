@@ -22,27 +22,11 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        use: [
-          {
-            loader: "style-loader",
-          },
-          {
-            loader: "css-loader",
-          },
-          {
-            loader: "less-loader",
-            options: {
-              sourceMap: true,
-              lessOptions: {
-                strictMath: true,
-              },
-            },
-          },
-        ],
+        use: ["style-loader", "css-loader","less-loader"],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: ["file-loader"],
+        use: ["url-loader"],
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,

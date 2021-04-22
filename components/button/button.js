@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import { PREFIX } from "../_util";
-
-console.log("button");
-
-class Button extends Component {
+import { Button,ConfigProvider } from "antd";
+import zhCN from 'antd/es/locale/zh_CN';
+console.log("button")
+class Btn extends Component {
   constructor(props) {
     super(props);
   }
@@ -18,25 +18,30 @@ class Button extends Component {
   };
 
   render() {
-    const { children, type, disabled, onClick } = this.props;
+    const { children, type, disabled, onClick,option } = this.props;
     const cls = classNames(`${PREFIX}-btn`, `${PREFIX}-btn-${type}`);
 
     return (
-      <button className={cls} onClick={this.handleClick} disabled={disabled}>
+	<ConfigProvider
+		locale={zhCN} autoInsertSpaceInButton={false}
+	>
+      <Button type="primary" className={cls} onClick={this.handleClick} disabled={disabled} {...option}>
         {children}
-      </button>
+      </Button>
+	  </ConfigProvider>
     );
   }
 }
 
 // 指定 props 的默认值：
-Button.defaultProps = {
+Btn.defaultProps = {
   type: "default",
 };
 
-Button.propTypes = {
+Btn.propTypes = {
   type: PropTypes.string,
   onClick: PropTypes.func,
+  option: PropTypes.object
 };
 
-export default Button;
+export default Btn;
