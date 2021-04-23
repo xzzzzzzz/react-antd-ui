@@ -137,7 +137,7 @@ const App = (
 	  <h1>常用组件</h1>
 	  <p>antd组件</p>
 	  <p>
-		<Btn type="primary" onClick={() => isModalVisible = true}>
+		<Btn type="primary" onClick={() => isModalVisible = true} size="small">
 			确认/保存
 		  </Btn>
 		  <Btn type="return" onClick={() => console.log("winyh")}>

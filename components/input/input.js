@@ -20,11 +20,11 @@ class YhInput extends Component {
   };
 
   render() {
-    const { type, disabled, onChange ,option} = this.props;
+    const { type, disabled, onChange ,...props} = this.props;
     const cls = classNames(`${PREFIX}-input`, `${PREFIX}-input-${type}`);
 
     return (
-      <Input className={cls} onChange={this.handleChange} disabled={disabled} {...option}/>
+      <Input className={cls} onChange={this.handleChange} disabled={disabled} {...props}/>
     );
   }
 }
@@ -36,8 +36,7 @@ YhInput.defaultProps = {
 
 YhInput.propTypes = {
   type: PropTypes.string,
-  onChange: PropTypes.func,
-  option: PropTypes.object
+  onChange: PropTypes.func
 };
 
 export default YhInput;

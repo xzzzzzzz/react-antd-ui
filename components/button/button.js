@@ -18,14 +18,14 @@ class Btn extends Component {
   };
 
   render() {
-    const { children, type, disabled, onClick,option } = this.props;
+    const { children, type, disabled, onClick,...props } = this.props;
     const cls = classNames(`${PREFIX}-btn`, `${PREFIX}-btn-${type}`);
 
     return (
 	<ConfigProvider
 		locale={zhCN} autoInsertSpaceInButton={false}
 	>
-      <Button type="primary" className={cls} onClick={this.handleClick} disabled={disabled} {...option}>
+      <Button type="primary" className={cls} onClick={this.handleClick} disabled={disabled} {...props}>
         {children}
       </Button>
 	  </ConfigProvider>
@@ -40,8 +40,7 @@ Btn.defaultProps = {
 
 Btn.propTypes = {
   type: PropTypes.string,
-  onClick: PropTypes.func,
-  option: PropTypes.object
+  onClick: PropTypes.func
 };
 
 export default Btn;

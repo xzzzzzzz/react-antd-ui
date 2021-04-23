@@ -1,0 +1,111 @@
+// const path = require("path");
+// const webpack = require("webpack");
+// const HtmlWebpackPlugin = require("html-webpack-plugin");
+// const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+// const WebpackBar = require("webpackbar");
+
+
+
+
+var path = require("path");
+var hwp = require("html-webpack-plugin");
+var HtmlWebpackPlugin = require("html-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+//const ParallelUglifyPlugin = require("webpack-parallel-uglify-plugin"); //webpack并行压缩代码工具 
+const TerserPlugin = require("terser-webpack-plugin"); //webpack默认打包插件
+//const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+//.BundleAnalyzerPlugin; //webpack bundle.js可视化工具
+const MiniCssExtractPlugin = require("mini-css-extract-plugin"); //webpack 分离CSS插件
+// const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin"); //webpack 压缩CSS插件
+module.exports = {
+entry: path.join(__dirname, "../components/index.js"),
+output: {
+	path: path.resolve(__dirname, "../lib"),
+	filename: "raui.js",
+	library: "raui",
+	libraryTarget: "umd",
+},
+mode: "production",
+module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          "css-loader"
+        ]
+      },
+	  {
+	    test: /\.less$/,
+	    use: ["style-loader", "css-loader","less-loader"],
+	  },
+      { test: /\.(png|jpg)$/, loader: "url-loader?limit=8192" },
+      {
+        exclude: /node_modules/,
+        test: /\.(js|jsx)$/,
+        loader: "babel-loader"
+      },
+	  {
+	    test: /\.(png|svg|jpg|gif)$/,
+	    use: ["file-loader"],
+	  },
+	  {
+	    test: /\.(woff|woff2|eot|ttf|otf)$/,
+	    use: ["file-loader"],
+	  },
+	  {
+	    test: /\.tsx?$/,
+	    exclude: /node_modules/,
+	    use: "ts-loader",
+	  },
+    ]
+},
+
+resolve: {
+extensions: [".tsx", ".ts", ".js", ".jsx"],
+},
+devServer: {
+//   host: "localhost",
+//  contentBase: path.join(__dirname, "dist"),
+//  compress: true,
+//  https:true,
+//  port: 8080,
+ proxy: {
+  "/api": {
+    // target: "http://localhost:9099"
+    // target: "http://172.18.0.127:18506"
+    // target: "http://192.168.0.12:18500"
+  }
+}
+},
+plugins: [
+    new CleanWebpackPlugin(),
+    new hwp({
+     title: "lib 创建 library",
+     template: path.resolve(__dirname, "../public/index.html"),
+    }),
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      chunkFilename: "[id].css",
+      ignoreOrder: false // Enable to remove warnings about conflicting order
+    })
+],
+
+  // 不属于内部的库, 外部的
+    externals: {
+      react: {
+        commonjs: "react",
+        commonjs2: "react",
+        amd: "react",
+        root: "React",
+      },
+      "react-dom": {
+        commonjs: "react",
+        commonjs2: "react",
+        amd: "react",
+        root: "React",
+      },
+    }
+};
